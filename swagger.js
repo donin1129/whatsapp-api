@@ -41,6 +41,10 @@ const doc = {
     }
   ],
   definitions: {
+    GetSessionResponse: {
+      success: true,
+      message: 'Retrieved sessions successfully'
+    },
     StartSessionResponse: {
       success: true,
       message: 'Session initiated successfully'

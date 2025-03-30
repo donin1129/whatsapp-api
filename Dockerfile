@@ -27,6 +27,7 @@ COPY . .
 
 # Expose the port the API will run on
 EXPOSE 3000
+EXPOSE 8000
 
 # Start the API
 CMD ["npm", "start"]
