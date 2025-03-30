@@ -137,7 +137,9 @@ const setupSession = (sessionId) => {
 
     const client = new Client(clientOptions)
 
-    client.initialize().catch(err => console.log('Initialize error:', err.message))
+    client.initialize().catch(err => 
+      console.error('Client initializaztion error:', err)
+    )
 
     initializeEvents(client, sessionId, socket)
 
