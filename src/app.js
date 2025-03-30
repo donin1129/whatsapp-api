@@ -7,7 +7,7 @@ const cors = require('cors')
 const { maxAttachmentSize } = require('./config')
 
 const corsOptions = {
-    origin: 'http://localhost', // Allow your frontend origin
+    origin: '*', // Allow your frontend origin
     allowedHeaders: ['Content-Type', 'x-api-key'], // Allow the x-api-key header
 };
 

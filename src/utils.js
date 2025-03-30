@@ -52,13 +52,14 @@ const initializeWebSocket = (app, port) => {
     cors: {
       origin: '*', // React frontend URL
       methods: ['GET', 'POST']
-    }
+    },
+    transports: ["websocket", "polling"], // ✅ Allow polling transport
   })
 
   io.on('connection', (socket) => {
-    console.log('A user connected')
+    console.log('A client connected')
     socket.on('disconnect', () => {
-      console.log('A user disconnected')
+      console.log('A client disconnected')
     })
   })
 
