@@ -10,7 +10,8 @@ const corsOptions = {
     origin: allowedOrigins, // Allow your frontend origin
     allowedHeaders: ['Content-Type', 'x-api-key'], // Allow the x-api-key header
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    credentials: true
+    credentials: true,
+    preflightContinue: false, // Ensures Express automatically handles preflight responses
 };
 
 // Initialize Express app
@@ -19,6 +20,7 @@ app.use(cors(corsOptions))
 app.use(bodyParser.json({ limit: maxAttachmentSize + 1000000 }))
 app.use(bodyParser.urlencoded({ limit: maxAttachmentSize + 1000000, extended: true }))
 app.use('/', routes)
+app.options('*', cors(corsOptions)); // Enable preflight for all routes
 
 restoreSessions()
 
