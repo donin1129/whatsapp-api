@@ -4,11 +4,13 @@ const { routes } = require('./routes')
 const app = require('express')()
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const { maxAttachmentSize } = require('./config')
+const { maxAttachmentSize, allowedOrigins } = require('./config')
 
 const corsOptions = {
-    origin: '*', // Allow your frontend origin
+    origin: allowedOrigins, // Allow your frontend origin
     allowedHeaders: ['Content-Type', 'x-api-key'], // Allow the x-api-key header
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    credentials: true
 };
 
 // Initialize Express app

@@ -1,5 +1,5 @@
 const axios = require('axios')
-const { globalApiKey, disabledCallbacks } = require('./config')
+const { globalApiKey, disabledCallbacks, allowedOrigins } = require('./config')
 const http = require('http')
 const { Server } = require('socket.io')
 
@@ -50,7 +50,7 @@ const initializeWebSocket = (app, port) => {
   const server = http.createServer(app)
   const io = new Server(server, {
     cors: {
-      origin: '*', // React frontend URL
+      origin: allowedOrigins, // ✅ Allow your frontend domain
       methods: ['GET', 'POST']
     },
     transports: ["websocket", "polling"], // ✅ Allow polling transport
