@@ -47,6 +47,7 @@ const checkIfEventisEnabled = (event) => {
 
 const initializeWebSocket = (app, port) => {
   // Configure a web socket
+  console.log('Initialize web socket')
   const server = http.createServer(app)
   const io = new Server(server, {
     cors: {

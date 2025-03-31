@@ -16,9 +16,8 @@ const rateLimitMax = process.env.RATE_LIMIT_MAX || 1000
 const rateLimitWindowMs = process.env.RATE_LIMIT_WINDOW_MS || 1000
 const recoverSessions = (process.env.RECOVER_SESSIONS || '').toLowerCase() === 'true'
 const webSocketPort = process.env.WEB_SOCKET_PORT || 8000
-const allowedOrigins = process.env.ALLOWED_ORIGINS
-    ? process.env.ALLOWED_ORIGINS.split(',')
-    : ['http://localhost:3000']; // Default fallback
+const allowedOrigins = process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : ['http://localhost:3000']; // Default fallback
+
 console.log('Allowed Origins:', allowedOrigins)
 
 module.exports = {

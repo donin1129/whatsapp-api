@@ -95,6 +95,7 @@ const restoreSessions = () => {
 // Setup Session
 const setupSession = (sessionId) => {
   try {
+    console.log(`Setting up session for id '${sessionId}'`)
     if (sessions.has(sessionId)) {
       return { success: false, message: `Session already exists for: ${sessionId}`, client: sessions.get(sessionId) }
     }
@@ -142,6 +143,8 @@ const setupSession = (sessionId) => {
     )
 
     initializeEvents(client, sessionId, socket)
+
+    console.log(`Initialization for session '${sessionId}' completed`)
 
     // Save the session to the Map
     sessions.set(sessionId, client)
