@@ -14,6 +14,9 @@ const corsOptions = {
     preflightContinue: false, // Ensures Express automatically handles preflight responses
 };
 
+// Enable trust proxy
+app.set("trust proxy", 1); // 1 means trust the first proxy
+
 // Initialize Express app
 app.disable('x-powered-by')
 app.use(cors(corsOptions))
