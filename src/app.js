@@ -15,7 +15,7 @@ const corsOptions = {
 };
 
 // Enable trust proxy
-app.set("trust proxy", 1); // 1 means trust the first proxy
+app.set("trust proxy", true); // Trust all proxies
 
 // Initialize Express app
 app.disable('x-powered-by')
