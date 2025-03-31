@@ -5,12 +5,15 @@ const { Server } = require('socket.io')
 
 // Trigger webhook endpoint
 const triggerWebhook = (webhookURL, sessionId, dataType, data) => {
+  // Check if webhook URL is defined and not empty
+  console.info(`Webhook triggered with sessionId '${sessionId}', dataType '${dataType}', data '${data}'`)
   axios.post(webhookURL, { dataType, data, sessionId }, { headers: { 'x-api-key': globalApiKey } })
     .catch(error => console.error('Failed to send new message webhook:', sessionId, dataType, error.message, data || ''))
 }
 
 // Emit web socket
 const emitWebSocket = (socket, sessionId, dataType, data) => {
+  console.info(`Websocket emit with sessionId '${sessionId}', dataType '${dataType}', data '${data}'`)
   socket.emit('socketEvent', { dataType, data, sessionId })
 }
 
@@ -47,7 +50,7 @@ const checkIfEventisEnabled = (event) => {
 
 const initializeWebSocket = (app, port) => {
   // Configure a web socket
-  console.log('Initialize web socket')
+  console.info('Initialize web socket')
   const server = http.createServer(app)
   const io = new Server(server, {
     cors: {
@@ -58,9 +61,9 @@ const initializeWebSocket = (app, port) => {
   })
 
   io.on('connection', (socket) => {
-    console.log('A client connected')
+    console.debug('A client connected')
     socket.on('disconnect', () => {
-      console.log('A client disconnected')
+      console.debug('A client disconnected')
     })
   })
 
@@ -68,7 +71,7 @@ const initializeWebSocket = (app, port) => {
     const token = socket.handshake.auth.token
     if (token === globalApiKey) {
       if (globalApiKey) {
-        console.log('Authenticated')
+        console.info('Websocket authenticated')
       }
       next()
     } else {
@@ -77,7 +80,7 @@ const initializeWebSocket = (app, port) => {
   })
 
   server.listen(port, () => {
-    console.log(`Web socket running on port ${port}`)
+    console.info(`Web socket running on port ${port}`)
   })
 
   return io
